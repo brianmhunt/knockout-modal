@@ -42,15 +42,39 @@
         </p>
       </div>
     </div>
+
+    <div class='pure-g'>
+      <div class='pure-u-1-1'>
+        <h2>Nested modals</h2>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          How deep does the rabbit hole go?
+        </p>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          <button class="pure-button"
+            data-bind='click: open_nested_click'>Nested Modal</button>
+        </p>
+      </div>
+    </div>
   </div>
 
 
   <template id='test-basic'>
-    Hello, world.
+    <h1>Hello, world.</h1>
   </template>
 
   <template id='test-scroll'>
     <p class='large' data-bind='text: ipsum'></p>
+  </template>
+
+  <template id='test-nested'>
+    <h2>Nested <strong data-bind='text: count'></strong></h2>
+    <hr/>
+    <button class='pure-button'
+      data-bind='click: open_click'>Go deeper</button>
   </template>
 
   <template id='kom-template'>

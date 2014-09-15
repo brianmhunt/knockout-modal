@@ -24,6 +24,9 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+.kom-modal ~ .kom-modal .kom-modal-content {
+  margin-top: 20px;
+}
 .kom-dialog {
   position: relative;
   margin: 0px auto;
@@ -53,8 +56,6 @@
           transform-origin: 50% 25%;
   -webkit-animation-name: kom_animation;
           animation-name: kom_animation;
-  -webkit-animation-delay: 0s;
-          animation-delay: 0s;
   -webkit-animation-duration: 0.3s;
           animation-duration: 0.3s;
   -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -89,12 +90,10 @@
 .kom-close {
   position: absolute;
   width: 65px;
-  height: 25px;
   border: 1px solid rbga(0, 0, 0, 0.5);
-  right: -18px;
-  top: -10px;
+  right: -22px;
+  top: -7px;
   cursor: n-resize;
-  box-shadow: 8px 5px rgba(0, 0, 0, 0.2);
   background-color: rgba(0, 0, 240, 0.5);
   z-index: 1100;
   -webkit-transform: rotate(45deg);
@@ -102,8 +101,20 @@
           transform: rotate(45deg);
   text-align: center;
   color: white;
+  padding-top: 12px;
+}
+.kom-close:after {
+  content: '\25be';
+  -webkit-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+          transform: rotate(135deg);
+  display: inline-block;
+}
+.kom-close:hover {
+  color: yellow;
+  background-color: rgba(0, 0, 150, 0.8);
 }
 .kom-contents {
-  -webkit-transition: 0.3s all;
-          transition: 0.3s all;
+  -webkit-transition: 0.3s 0s all;
+          transition: 0.3s 0s all;
 }

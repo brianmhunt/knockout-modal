@@ -24,6 +24,12 @@
   overflow-x: hidden;
 }
 
+.kom-modal ~ .kom-modal {
+  .kom-modal-content {
+    margin-top: 20px;
+  }
+}
+
 .kom-dialog {
   position: relative;
   margin: 0px auto;
@@ -45,7 +51,6 @@
   outline: 0;
   transform-origin: 50% 25%;
   animation-name: kom_animation;
-  animation-delay: 0s;
   animation-duration: 0.3s;
   animation-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
@@ -63,19 +68,28 @@
 .kom-close {
   position: absolute;
   width: 65px;
-  height: 25px;
   border: 1px solid rbga(0,0,0,0.5);
-  right: -18px;
-  top: -10px;
+  right: -22px;
+  top: -7px;
   cursor: n-resize;
-  box-shadow: 8px 5px rgba(0,0,0,0.2);
   background-color: rgba(0,0,240,0.5);
   z-index: 1100;
   transform: rotate(45deg);
   text-align: center;
   color: white;
+  padding-top: 12px;
+  &:after {
+    content: '\25be';
+    transform: rotate(135deg);
+    display: inline-block;
+  }
+
+  &:hover {
+    color: yellow;
+    background-color: rgba(0,0,150, 0.8);
+  }
 }
 
 .kom-contents {
-  transition: 0.3s all;
+  transition: 0.3s 0s all;
 }

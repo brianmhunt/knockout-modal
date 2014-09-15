@@ -3,6 +3,8 @@
 // Demo/Specs
 //
 
+var nest_count = 0;
+
 var view_model = {
   open_basic_click: function () {
     var data = {
@@ -47,7 +49,15 @@ var view_model = {
         "value-added."
     };
     new KnockoutModal('test-scroll', data, {show: true});
-  }
+  },
+
+  open_nested_click: function () {
+    var data = {
+      count: nest_count++,
+      open_click: view_model.open_nested_click,
+    };
+    new KnockoutModal('test-nested', data, {show: true});
+  },
 };
 
 ko.applyBindings(view_model);
