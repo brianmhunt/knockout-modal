@@ -1,0 +1,26 @@
+{
+  "name": "knockout-modal",
+  "version": "0.7.0",
+  "description": "Unobtrusive modals with knockout",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brianmhunt/knockout-modal.git"
+  },
+  "keywords": [
+    "knockout",
+    "modal"
+  ],
+  "author": "Brian M Hunt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brianmhunt/knockout-modal/issues"
+  },
+  "homepage": "https://github.com/brianmhunt/knockout-modal",
+  "devDependencies": {
+    "gulp": "^3.8.8"
+  }
+}
