@@ -3,86 +3,107 @@
 * MIT licensed
 */
 .kom-active body {
+  overflow: hidden;
+}
+.kom-active .kom-contents {
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
   -webkit-transform: scale(0.9);
       -ms-transform: scale(0.9);
           transform: scale(0.9);
 }
-.kom-cover {
-  background: rgba(0, 0, 0, 0.5);
-  height: 100%;
-  left: 0;
-  opacity: 0;
+.kom-modal {
   position: fixed;
+  display: block;
   top: 0;
-  visibility: hidden;
-  width: 100%;
-  z-index: 1;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 900;
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
-.kom-active .kom-cover {
-  opacity: 1;
-  visibility: visible;
-}
-.kom-contents {
-  height: 100%;
-  margin: auto;
-  max-width: 400px;
-  padding: 20px;
+.kom-dialog {
   position: relative;
+  margin: 0px auto;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 90%;
 }
-.kom-active .kom-contents {
-  -webkit-filter: blur(2px);
-          filter: blur(2px);
+.kom-modal-content {
+  padding: 12px 1em;
+  margin: 8px;
+  position: relative;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background-clip: padding-box;
+  overflow: hidden;
+  outline: 0;
+  -webkit-transform-origin: 50% 25%;
+      -ms-transform-origin: 50% 25%;
+          transform-origin: 50% 25%;
+  -webkit-animation-name: kom_animation;
+          animation-name: kom_animation;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.no-blur.kom-active .kom-contents {
-  -webkit-filter: none;
-          filter: none;
-}
-.kom-popup {
-  background: white;
-  border-radius: 3px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-  height: 180px;
-  left: 50%;
-  margin: -130px 0 0 -190px;
-  opacity: 0;
-  padding: 20px;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: scale(0.8);
-      -ms-transform: scale(0.8);
-          transform: scale(0.8);
-  visibility: hidden;
-  width: 340px;
-  z-index: 2;
-}
-.kom-active .kom-popup-animate {
-  opacity: 1;
-  -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-          transform: scale(1.1);
-  visibility: visible;
-}
-.kom-popup.stack {
-  -webkit-transform: scale(1.5);
-      -ms-transform: scale(1.5);
-          transform: scale(1.5);
-}
-.kom-active .kom-popup.stack {
-  -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-          transform: scale(1.1);
-}
-.kom-ready .kom-popup.no-transition {
-  -webkit-transition: none;
-          transition: none;
-}
-.kom-ready body,
-.kom-ready .kom-contents,
-.kom-ready .kom-popup,
-.kom-ready .kom-cover {
-  -webkit-transform-origin: 50% 50%;
-      -ms-transform-origin: 50% 50%;
-          transform-origin: 50% 50%;
+.kom-remove-animation {
   -webkit-transition: 0.3s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
           transition: 0.3s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-transform: scale3d(0, 0, 0);
+          transform: scale3d(0, 0, 0);
+}
+@-webkit-keyframes kom_animation {
+  from {
+    -webkit-transform: scale3d(0, 0, 0);
+            transform: scale3d(0, 0, 0);
+  }
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes kom_animation {
+  from {
+    -webkit-transform: scale3d(0, 0, 0);
+            transform: scale3d(0, 0, 0);
+  }
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+.kom-close {
+  position: absolute;
+  width: 65px;
+  height: 25px;
+  border: 1px solid rbga(0, 0, 0, 0.5);
+  right: -18px;
+  top: -10px;
+  cursor: n-resize;
+  box-shadow: 8px 5px rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 240, 0.5);
+  z-index: 1100;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  text-align: center;
+  color: white;
+}
+.kom-contents {
+  -webkit-transition: 0.3s all;
+          transition: 0.3s all;
 }

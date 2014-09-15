@@ -1,0 +1,29 @@
+/*!
+  Knockout Modal
+  License: MIT
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,500);
+body {
+  font-family: 'Ubuntu', serif;
+  font-size: 20px;
+}
+
+html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
+  font-family: 'Ubuntu', serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+.kom-contents {
+  max-width:800px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.large {
+  font-size: 2em;
+}

@@ -25,7 +25,7 @@ var config = {
   watch: {
     js: ['index.js', 'spec/test.js'],
     html: 'spec/*.html',
-    less: 'styles/*'
+    less: ['styles/*', 'spec/test.css']
   }
 };
 
@@ -33,7 +33,8 @@ gulp.task('less', function () {
   return gulp.src(config.css.src)
      .pipe(plugins.less(config.css.less_opts).on('error', console.log))
      .pipe(plugins.autoprefixer())
-     .pipe(gulp.dest(config.css.dst));
+     .pipe(gulp.dest(config.css.dst))
+     .pipe(plugins.connect.reload());
 })
 
 gulp.task('connect', function () {
@@ -50,8 +51,8 @@ gulp.task('js', function () {
     .pipe(plugins.connect.reload());
 });
 
-gulp.task('watch', function () {
-  gulp.watch(config.watch.css, ['less'])
+gulp.task('watch', ['less', 'html', 'js'], function () {
+  gulp.watch(config.watch.less, ['less'])
   gulp.watch(config.watch.html, ['html'])
   gulp.watch(config.watch.js, ['js'])
 })

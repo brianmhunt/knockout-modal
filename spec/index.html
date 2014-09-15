@@ -1,9 +1,68 @@
 <html>
-<head></head>
+<head>
+  <link rel='stylesheet' href='pure/pure.css'/>
+  <link rel='stylesheet' href='knockout-modal.css'/>
+  <link rel='stylesheet' href='test.css'/>
+</head>
 <body>
-  <knockout-modal params='template: '></knockout-modal>
+  <div class='kom-contents'>
 
-  <h1>Knockout Modal</h1>
+    <h1>Knockout Modal</h1>
+
+    <div class='pure-g'>
+      <div class='pure-u-1-1'>
+        <h2>Basic modal</h2>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          Just open and close.
+        </p>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          <button class="pure-button"
+            data-bind='click: open_basic_click'>Basic Modal</button>
+        </p>
+      </div>
+    </div>
+
+    <div class='pure-g'>
+      <div class='pure-u-1-1'>
+        <h2>Long modal</h2>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          Scrolling!
+        </p>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          <button class="pure-button"
+            data-bind='click: open_scroll_click'>Scrolling Modal</button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <template id='test-basic'>
+    Hello, world.
+  </template>
+
+  <template id='test-scroll'>
+    <p class='large' data-bind='text: ipsum'></p>
+  </template>
+
+  <template id='kom-template'>
+    <div class='kom-modal'>
+      <div class='kom-dialog'>
+        <div class='kom-modal-content'>
+          <div class='kom-close' title='Go back'></div>
+          <!-- ko template:{name:template,data:data,if:template} --><!-- /ko -->
+        </div>
+      </div>
+    </div>
+  </template>
 
   <script src='knockout/dist/knockout.debug.js'></script>
   <script src='jquery/dist/jquery.js'></script>
