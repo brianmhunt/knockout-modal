@@ -1,0 +1,88 @@
+/*!
+* Knockout-Modal
+* MIT licensed
+*/
+.kom-active body {
+  -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+          transform: scale(0.9);
+}
+.kom-cover {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  z-index: 1;
+}
+.kom-active .kom-cover {
+  opacity: 1;
+  visibility: visible;
+}
+.kom-contents {
+  height: 100%;
+  margin: auto;
+  max-width: 400px;
+  padding: 20px;
+  position: relative;
+}
+.kom-active .kom-contents {
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
+}
+.no-blur.kom-active .kom-contents {
+  -webkit-filter: none;
+          filter: none;
+}
+.kom-popup {
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  height: 180px;
+  left: 50%;
+  margin: -130px 0 0 -190px;
+  opacity: 0;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: scale(0.8);
+      -ms-transform: scale(0.8);
+          transform: scale(0.8);
+  visibility: hidden;
+  width: 340px;
+  z-index: 2;
+}
+.kom-active .kom-popup-animate {
+  opacity: 1;
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+  visibility: visible;
+}
+.kom-popup.stack {
+  -webkit-transform: scale(1.5);
+      -ms-transform: scale(1.5);
+          transform: scale(1.5);
+}
+.kom-active .kom-popup.stack {
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+}
+.kom-ready .kom-popup.no-transition {
+  -webkit-transition: none;
+          transition: none;
+}
+.kom-ready body,
+.kom-ready .kom-contents,
+.kom-ready .kom-popup,
+.kom-ready .kom-cover {
+  -webkit-transform-origin: 50% 50%;
+      -ms-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transition: 0.3s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transition: 0.3s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
