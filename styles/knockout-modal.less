@@ -22,6 +22,7 @@
   overflow: hidden;
   overflow-y: auto;
   overflow-x: hidden;
+  transform: translate3d(0,0,0);
 }
 
 .kom-modal ~ .kom-modal {
@@ -44,8 +45,9 @@
   margin: 8px;
   position: relative;
   background-color: white;
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(0,0,0,0.1);
   border-radius: 8px;
+  box-shadow: 3px 5px 5px rgba(0,0,0,0.4);
   background-clip: padding-box;
   overflow: hidden;
   outline: 0;
@@ -56,7 +58,7 @@
 }
 
 .kom-remove-animation {
-  transition: 0.3s all cubic-bezier(0.250, 0.460, 0.450, 0.940);
+  transition: 0.3s transform cubic-bezier(0.250, 0.460, 0.450, 0.940);
   transform: scale3d(0,0,0);
 }
 
@@ -79,8 +81,8 @@
   color: white;
   padding-top: 12px;
   &:after {
-    content: '\25be';
-    transform: rotate(135deg);
+    content: '\21a9';
+    transform: rotate(45deg);
     display: inline-block;
   }
 

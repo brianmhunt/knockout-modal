@@ -3,14 +3,14 @@
   License: MIT
 */
 
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,500);
+@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700);
 body {
-  font-family: 'Ubuntu', serif;
-  font-size: 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 18px;
 }
 
 html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
-  font-family: 'Ubuntu', serif;
+  font-family: 'Libre Baskerville', serif;
 }
 
 h1 {
@@ -25,5 +25,5 @@ h1 {
 }
 
 .large {
-  font-size: 2em;
+  font-size: 1.5em;
 }

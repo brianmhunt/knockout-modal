@@ -1,11 +1,15 @@
 Knockout Modal
 ---
 
-A modal that uses Knockout.
+An opinionated modal, using Knockout.
 
+Not intended for general-use, but hopefully you think it's cool.
 
-Related
----
-http://lab.hakim.se/avgrund/
+Features:
+
+- Flexbox for centering.
+- CSS3 animations
+- Long-modal scrolling
+
 
 LICENSE: MIT

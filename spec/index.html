@@ -59,6 +59,23 @@
         </p>
       </div>
     </div>
+
+    <div class='pure-g'>
+      <div class='pure-u-1-1'>
+        <h2>History and modals</h2>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          Back and forth we go.
+        </p>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          <button class="pure-button"
+            data-bind='click: open_history_click'>History Modal</button>
+        </p>
+      </div>
+    </div>
   </div>
 
 
@@ -67,7 +84,10 @@
   </template>
 
   <template id='test-scroll'>
-    <p class='large' data-bind='text: ipsum'></p>
+    <h1>A lot of text.</h1>
+    <!-- ko foreach: ipsum -->
+    <p class='large' data-bind='text: $data'></p>
+    <!-- /ko -->
   </template>
 
   <template id='test-nested'>
@@ -75,6 +95,15 @@
     <hr/>
     <button class='pure-button'
       data-bind='click: open_click'>Go deeper</button>
+  </template>
+
+  <template id='test-history'>
+    <h2>History</h2>
+    <h3 data-bind='text: count'></h3>
+    <hr/>
+    Use the back/forward buttons to navigate.
+    <button class='pure-button'
+      data-bind='click: open_click'>Add another modal</button>
   </template>
 
   <template id='kom-template'>

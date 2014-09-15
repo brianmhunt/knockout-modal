@@ -23,6 +23,8 @@
   overflow: hidden;
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
 }
 .kom-modal ~ .kom-modal .kom-modal-content {
   margin-top: 20px;
@@ -46,8 +48,9 @@
   margin: 8px;
   position: relative;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.4);
   background-clip: padding-box;
   overflow: hidden;
   outline: 0;
@@ -62,8 +65,8 @@
           animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .kom-remove-animation {
-  -webkit-transition: 0.3s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          transition: 0.3s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-transition: 0.3s -webkit-transform cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transition: 0.3s transform cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -webkit-transform: scale3d(0, 0, 0);
           transform: scale3d(0, 0, 0);
 }
@@ -104,10 +107,10 @@
   padding-top: 12px;
 }
 .kom-close:after {
-  content: '\25be';
-  -webkit-transform: rotate(135deg);
-      -ms-transform: rotate(135deg);
-          transform: rotate(135deg);
+  content: '\21a9';
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
   display: inline-block;
 }
 .kom-close:hover {
