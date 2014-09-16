@@ -15,6 +15,12 @@ html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
 
 h1 {
   text-align: center;
+  font-weight: normal;
+}
+
+h2 {
+  text-align: center;
+  font-weight: normal;
 }
 
 
