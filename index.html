@@ -1,12 +1,15 @@
 <html>
+
 <head>
-  <link rel='stylesheet' href='bower_components/pure/pure.css'/>
-  <link rel='stylesheet' href='dist/knockout-modal.css'/>
-  <link rel='stylesheet' href='spec/test.css'/>
+  <link rel='stylesheet' href='bower_components/pure/pure.css' />
+  <link rel='stylesheet' href='dist/knockout-modal.css' />
+  <link rel='stylesheet' href='spec/test.css' />
 </head>
+
 <body>
   <a href="https://github.com/brianmhunt/knockout-modal">
-    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67"
+    alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
   </a>
 
   <div class='kom-contents'>
@@ -25,8 +28,7 @@
       </div>
       <div class='pure-u-1-2'>
         <p>
-          <button class="pure-button"
-            data-bind='click: open_basic_click'>Basic Modal</button>
+          <button class="pure-button" data-bind='click: open_basic_click'>Basic Modal</button>
         </p>
       </div>
     </div>
@@ -42,8 +44,7 @@
       </div>
       <div class='pure-u-1-2'>
         <p>
-          <button class="pure-button"
-            data-bind='click: open_scroll_click'>Scrolling Modal</button>
+          <button class="pure-button" data-bind='click: open_scroll_click'>Scrolling Modal</button>
         </p>
       </div>
     </div>
@@ -59,8 +60,7 @@
       </div>
       <div class='pure-u-1-2'>
         <p>
-          <button class="pure-button"
-            data-bind='click: open_nested_click'>Nested Modal</button>
+          <button class="pure-button" data-bind='click: open_nested_click'>Nested Modal</button>
         </p>
       </div>
     </div>
@@ -76,8 +76,7 @@
       </div>
       <div class='pure-u-1-2'>
         <p>
-          <button class="pure-button"
-            data-bind='click: open_async_click'>Async Modal</button>
+          <button class="pure-button" data-bind='click: open_async_click'>Async Modal</button>
         </p>
       </div>
     </div>
@@ -111,9 +110,32 @@
       </div>
       <div class='pure-u-1-2'>
         <p>
-          <button class="pure-button"
-            data-bind='click: open_history_click'>History Modal</button>
+          <button class="pure-button" data-bind='click: open_history_click'>History Modal</button>
         </p>
+      </div>
+    </div>
+
+    <br/>
+    <br/>
+
+    <div class='pure-g'>
+      <div class='pure-u-1-1'>
+        <p>
+          A bit more info:
+        </p>
+        <ul>
+          <li>
+            <a href='http://brianmhunt.github.io/articles/opinionated-modals/'>
+            Opinionated modals with Knockout <small>(blog article)</small>
+          </a>
+          </li>
+          <br/>
+          <li>
+            <a href='https://github.com/brianmhunt/knockout-modal'>
+              Github Repository
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -133,8 +155,7 @@
   <template id='test-nested'>
     <h3>Modal #<em data-bind='text: count'></em></h3>
     <hr/>
-    <button class='pure-button'
-      data-bind='click: open_click'>Go deeper</button>
+    <button class='pure-button' data-bind='click: open_click'>Go deeper</button>
   </template>
 
   <template id='test-async'>
@@ -156,8 +177,7 @@
       Use the back/forward buttons to navigate.
     </p>
     <hr/>
-    <button class='pure-button'
-      data-bind='click: open_click'>Add another modal</button>
+    <button class='pure-button' data-bind='click: open_click'>Add another modal</button>
   </template>
 
   <div id='loading-animation'>
@@ -170,9 +190,9 @@
     <div class='kom-dialog' data-bind='css: css'>
       <div class='kom-box'>
         <div class='kom-modal-content'>
-          <div class='kom-close' data-bind='click: on_close_click'
-            title='Go back'></div>
-          <!-- ko template:{name:template,data:data,if:template} --><!-- /ko -->
+          <div class='kom-close' data-bind='click: on_close_click' title='Go back'></div>
+          <!-- ko template:{name:template,data:data,if:template} -->
+          <!-- /ko -->
         </div>
       </div>
     </div>
@@ -183,4 +203,5 @@
   <script src='index.js'></script>
   <script src='spec/test.js'></script>
 </body>
+
 </html>

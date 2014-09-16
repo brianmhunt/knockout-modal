@@ -7,6 +7,7 @@
 body {
   font-family: 'Libre Baskerville', serif;
   font-size: 18px;
+  padding-bottom: 50px;
 }
 
 html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
