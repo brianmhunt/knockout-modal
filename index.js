@@ -49,7 +49,11 @@
       }, this);
 
       this.active_class = ko.pureComputed(function () {
-        return this.is_active() ? 'kom-active' : 'kom-inactive';
+        var index = stack().indexOf(this);
+        var at_ = at();
+        return index == at_ ? 'kom-active'
+          : index < at_ ? 'kom-inactive kom-pushed'
+          : 'kom-inactive kom-popped';
       }, this);
 
       stack.splice(at() + 1).forEach(function (kom) {

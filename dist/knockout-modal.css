@@ -48,7 +48,7 @@
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  min-height: 90%;
+  height: 100%;
 }
 .kom-modal-content {
   padding: 12px 1em;
@@ -128,11 +128,28 @@
   -webkit-transition: 0.3s all;
           transition: 0.3s all;
 }
+/* .kom-modal */
 .kom-active {
+  -webkit-transition: 0.3s padding;
+          transition: 0.3s padding;
+}
+.kom-active .kom-modal-content {
   -webkit-transition: 0.3s -webkit-transform;
           transition: 0.3s transform;
 }
+/* .kom-modal */
 .kom-inactive {
+  z-index: -1;
+  -webkit-transition: 0.3s padding;
+          transition: 0.3s padding;
+}
+.kom-inactive.kom-pushed {
+  padding-top: 100%;
+}
+.kom-inactive.kom-popped {
+  padding-top: 0%;
+}
+.kom-inactive .kom-modal-content {
   -webkit-transform: rotateX(75deg) translateZ(35vh);
           transform: rotateX(75deg) translateZ(35vh);
   -webkit-transform-origin: 0 0;

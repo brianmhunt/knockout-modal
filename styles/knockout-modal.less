@@ -44,7 +44,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90%;
+  height: 100%;
 }
 
 .kom-modal-content {
@@ -103,13 +103,29 @@
   transition: 0.3s all;
 }
 
-.kom-active {
-  transition: 0.3s transform;
+/* .kom-modal */.kom-active {
+  transition: 0.3s padding;
+  .kom-modal-content {
+    transition: 0.3s transform;
+  }
 }
 
-.kom-inactive {
-  transform: rotateX(75deg) translateZ(35vh);
-  transition: 0.3s transform;
-  transform-origin: 0 0;
-  transition: 0.3s transform;
+/* .kom-modal */.kom-inactive {
+  z-index: -1;
+
+  transition: 0.3s padding;
+  &.kom-pushed {
+    padding-top: 100%;
+  }
+
+  &.kom-popped {
+    padding-top: 0%;
+  }
+
+  .kom-modal-content {
+    transform: rotateX(75deg) translateZ(35vh);
+    transition: 0.3s transform;
+    transform-origin: 0 0;
+    transition: 0.3s transform;
+  }
 }
