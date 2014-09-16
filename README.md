@@ -5,7 +5,7 @@ An opinionated modal, using Knockout.
 
 See the [**demonstration**](https://brianmhunt.github.io/knockout-modal).
 
-Not intended for general-use, but hopefully you'll it's pretty neat.
+Not intended for general-use, but hopefully you'll agree it's pretty neat.
 
 Features:
 
