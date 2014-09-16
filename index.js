@@ -16,26 +16,16 @@
   var $html = $("html");
   var TRANSITION_END = "webkitTransitionEnd oTransitionEnd otransitionend " +
     "transitionend msTransitionEnd";
-  var open_modals, at;
-
-  function apply_backdrop() {
-    $html.addClass('kom-active');
-  }
-
-  function remove_backdrop() {
-    if (open_modals().length == 0) {
-      $html.removeClass('kom-active');
-    }
-  }
+  var stack, at;
 
   $(document.body).on('click', '.kom-modal', function (evt) {
+    console.log("dbC");
     var class_list = evt.target.classList;
     if (class_list.contains("kom-modal") || class_list.contains("kom-dialog")) {
-      modals = open_modals();
-      if (modals.length == 0) {
-        return
+      modals = stack();
+      if (modals.length > 0) {
+        modals[modals.length - 1].remove()
       }
-      modals[modals.length - 1].deactivate()
     }
   });
 
@@ -55,29 +45,24 @@
       }
 
       this.is_active = ko.computed(function () {
-        return open_modals().indexOf(this) == at();
+        return stack().indexOf(this) == at();
       }, this);
 
       this.active_class = ko.pureComputed(function () {
         return this.is_active() ? 'kom-active' : 'kom-inactive';
       }, this);
 
-      this.is_active.subscribe(this.on_active_change, this);
-
-      open_modals.push(this);
-      KnockoutModal.at(open_modals().indexOf(this));
+      stack.splice(at() + 1).forEach(function (kom) {
+        kom.remove();
+      });
+      at(stack.push(this) - 1);
       ko.applyBindings(this, $node[0]);
     }
 
-    KM.prototype.activate = function () {
-      apply_backdrop();
-    };
-
-    KM.prototype.deactivate = function () {
+    KM.prototype.remove = function () {
       var node = this.$node;
-      var callback = this.options.afterClose;
-      open_modals.remove(this);
-      remove_backdrop();
+      var callback = this.options.after_close;
+      stack.remove(this);
       at(at() - 1);
       function on_hide() {
         node.remove();
@@ -89,23 +74,29 @@
     };
 
     KM.prototype.index = function () {
-      return open_modals.indexOf(this);
+      return stack.indexOf(this);
     }
 
-    KM.prototype.on_active_change = function(is_active) {
-      if (is_active) {
-        this.activate();
-      } else {
-        this.deactivate();
+    function on_close_click(evt) {
+      var callback = this.options.on_close_click;
+      at(at() - 1);
+      if (typeof callback == 'function') {
+        callback(evt);
       }
-    }
-
-    function on_close_click() {
-      this.deactivate();
+      return false;
     }
 
     at = KM.at = ko.observable();
-    open_modals = KM.open_modals = ko.observableArray();
+    stack = KM.stack = ko.observableArray();
+
+    at.subscribe(function(at_) {
+      if (at_ >= 0) {
+        $html.addClass('kom-active');
+      } else {
+        $html.removeClass('kom-active');
+      }
+    });
+
     return KM;
   })();
 

@@ -18,11 +18,18 @@
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 900;
   overflow: hidden;
   overflow-y: auto;
   overflow-x: hidden;
   transform: translate3d(0,0,0);
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+  .kom-active & {
+    z-index: 900;
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .kom-modal ~ .kom-modal {

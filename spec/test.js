@@ -57,10 +57,7 @@ var view_model = {
       count: nest_count++,
       open_click: view_model.open_nested_click,
     };
-    new KnockoutModal('test-nested', data, {
-      show: true,
-      afterClose: function () { nest_count-- },
-    });
+    new KnockoutModal('test-nested', data, { show: true, });
   },
 
   open_history_click: function () {
@@ -69,25 +66,20 @@ var view_model = {
       open_click: view_model.open_history_click,
     };
 
-    var kom = new KnockoutModal('test-nested', data, {
+    var kom = new KnockoutModal('test-history', data, {
       show: true,
-      afterClose: function () {
-        if (history.state) {
-          history.back();
-        }
-      }
+      on_close_click: function (evt) {
+        console.log("OCC", evt);
+        // history.back();
+      },
     });
 
-    var state = {
-      idx: kom.index(),
-      template: 'test-nested',
-    };
-
-    history.pushState(state);
+    history.pushState({ index: kom.index() });
   }
 };
 
 $(window).on('popstate', function () {
+  console.log("POPSTATE", history.state);
   if (!history.state) {
     return;
   }
