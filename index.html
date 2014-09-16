@@ -5,14 +5,18 @@
   <link rel='stylesheet' href='spec/test.css'/>
 </head>
 <body>
-  <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+  <a href="https://github.com/brianmhunt/knockout-modal">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
+  </a>
 
   <div class='kom-contents'>
     <h1>Knockout Modal</h1>
 
+    <h2>Highly opinionated modals.</h2>
+
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>Basic modal</h2>
+        <h3>Basic modal</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -29,7 +33,7 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>Long modal</h2>
+        <h3>Long modal</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -46,7 +50,7 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>Nested modals</h2>
+        <h3>Nested modals</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -63,7 +67,7 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>Async modals</h2>
+        <h3>Async modals</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -80,7 +84,7 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>Event modals</h2>
+        <h3>Event modals</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -98,7 +102,7 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>History and modals</h2>
+        <h3>History and modals</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -127,7 +131,7 @@
   </template>
 
   <template id='test-nested'>
-    <h2>Modal #<em data-bind='text: count'></em></h2>
+    <h3>Modal #<em data-bind='text: count'></em></h3>
     <hr/>
     <button class='pure-button'
       data-bind='click: open_click'>Go deeper</button>
@@ -146,7 +150,7 @@
   </template>
 
   <template id='test-history'>
-    <h2>History</h2>
+    <h3>History</h3>
     <h3>At: <!-- ko text: at --><!-- /ko --></h3>
     <p>
       Use the back/forward buttons to navigate.
