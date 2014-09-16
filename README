@@ -11,7 +11,7 @@ Features:
 - CSS3 animations
 - Long-modal scrolling
 - Multiple modal stacking
-- Can play well with browser history
+- Plays well with HTML5 history
 - ~ 100 lines of Javascript
 
 LICENSE: MIT

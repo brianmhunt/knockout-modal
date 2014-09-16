@@ -86,28 +86,23 @@ var view_model = {
         if (kom._is_on_history_stack) {
           return;
         }
-        console.log("PUSHSTATE", kom.index(), "history is", history.state);
         history.pushState({ index: kom.index() }, '', '#' + kom.index());
         kom._is_on_history_stack = true;
       },
       pop: function () {
-        console.log("BACK");
         // popstate handler takes care of putting us at the right index.
         history.back();
       },
     });
-
-    history.pushState({ index: kom.index() });
   },
 };
 
 $(window).on('popstate', function (evt) {
-  console.log("POPSTATE", history.state);
   if (!history.state) {
     KnockoutModal.at(-1);
     return;
   }
-  KnockoutModal.at(history.state.index - 1);
+  KnockoutModal.at(history.state.index);
 });
 
 $(document.body).on('click', '[data-kom-toggle]', function (evt) {
