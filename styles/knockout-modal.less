@@ -93,5 +93,16 @@
 }
 
 .kom-contents {
-  transition: 0.3s 0s all;
+  transition: 0.3s all;
+}
+
+.kom-active {
+  transition: 0.3s transform;
+}
+
+.kom-inactive {
+  transform: rotateX(75deg) translateZ(35vh);
+  transition: 0.3s transform;
+  transform-origin: 0 0;
+  transition: 0.3s transform;
 }

@@ -27,3 +27,7 @@ h1 {
 .large {
   font-size: 1.5em;
 }
+
+.narrow {
+  max-width: 500px;
+}

@@ -16,7 +16,7 @@
   var $html = $("html");
   var TRANSITION_END = "webkitTransitionEnd oTransitionEnd otransitionend " +
     "transitionend msTransitionEnd";
-  var open_modals = ko.observableArray();
+  var open_modals, at;
 
   function apply_backdrop() {
     $html.addClass('kom-active');
@@ -47,19 +47,29 @@
       this.template = template;
       this.data = data;
       this.options = options || {};
-
-      ko.applyBindings(this, $node[0]);
       this.$node = $node;
       this.$content = $node.find('.kom-modal-content');
-      this.$node.on('click', '.kom-close', on_close_click.bind(this))
+      this.$node.on('click', '.kom-close', on_close_click.bind(this));
+      if (this.options.classes) {
+        this.$content.addClass(this.options.classes);
+      }
 
-      this.display = ko.observable();
-      this.display.subscribe(this.on_display_change, this);
-      this.display(this.options.show != false);
+      this.is_active = ko.computed(function () {
+        return open_modals().indexOf(this) == at();
+      }, this);
+
+      this.active_class = ko.pureComputed(function () {
+        return this.is_active() ? 'kom-active' : 'kom-inactive';
+      }, this);
+
+      this.is_active.subscribe(this.on_active_change, this);
+
+      open_modals.push(this);
+      KnockoutModal.at(open_modals().indexOf(this));
+      ko.applyBindings(this, $node[0]);
     }
 
     KM.prototype.activate = function () {
-      open_modals.push(this);
       apply_backdrop();
     };
 
@@ -68,6 +78,7 @@
       var callback = this.options.afterClose;
       open_modals.remove(this);
       remove_backdrop();
+      at(at() - 1);
       function on_hide() {
         node.remove();
         if (typeof callback == 'function') {
@@ -77,18 +88,24 @@
       node.addClass('kom-remove-animation').one(TRANSITION_END, on_hide);
     };
 
-    KM.prototype.on_display_change = function (display) {
-      display ? this.activate() : this.deactivate();
-    };
-
     KM.prototype.index = function () {
       return open_modals.indexOf(this);
+    }
+
+    KM.prototype.on_active_change = function(is_active) {
+      if (is_active) {
+        this.activate();
+      } else {
+        this.deactivate();
+      }
     }
 
     function on_close_click() {
       this.deactivate();
     }
 
+    at = KM.at = ko.observable();
+    open_modals = KM.open_modals = ko.observableArray();
     return KM;
   })();
 

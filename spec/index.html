@@ -78,13 +78,13 @@
     </div>
   </div>
 
-
   <template id='test-basic'>
     <h1>Hello, world.</h1>
   </template>
 
   <template id='test-scroll'>
-    <h1>A lot of text.</h1>
+    <h1>A lot of text ... <em>so scroll!</em></h1>
+    <small>(Unless your screen is super-huge)</small>
     <!-- ko foreach: ipsum -->
     <p class='large' data-bind='text: $data'></p>
     <!-- /ko -->
@@ -109,7 +109,7 @@
   <template id='kom-template'>
     <div class='kom-modal'>
       <div class='kom-dialog'>
-        <div class='kom-modal-content'>
+        <div class='kom-modal-content' data-bind='css: active_class'>
           <div class='kom-close' title='Go back'></div>
           <!-- ko template:{name:template,data:data,if:template} --><!-- /ko -->
         </div>

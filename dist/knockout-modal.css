@@ -118,6 +118,19 @@
   background-color: rgba(0, 0, 150, 0.8);
 }
 .kom-contents {
-  -webkit-transition: 0.3s 0s all;
-          transition: 0.3s 0s all;
+  -webkit-transition: 0.3s all;
+          transition: 0.3s all;
+}
+.kom-active {
+  -webkit-transition: 0.3s -webkit-transform;
+          transition: 0.3s transform;
+}
+.kom-inactive {
+  -webkit-transform: rotateX(75deg) translateZ(35vh);
+          transform: rotateX(75deg) translateZ(35vh);
+  -webkit-transform-origin: 0 0;
+      -ms-transform-origin: 0 0;
+          transform-origin: 0 0;
+  -webkit-transition: 0.3s -webkit-transform;
+          transition: 0.3s transform;
 }

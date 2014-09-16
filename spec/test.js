@@ -49,7 +49,7 @@ var view_model = {
 
   open_scroll_click: function () {
     var data = { ipsum: ipsum };
-    new KnockoutModal('test-scroll', data, {show: true});
+    new KnockoutModal('test-scroll', data, {show: true, classes: 'narrow'});
   },
 
   open_nested_click: function () {
@@ -72,13 +72,14 @@ var view_model = {
     var kom = new KnockoutModal('test-nested', data, {
       show: true,
       afterClose: function () {
-        history.back()
+        if (history.state) {
+          history.back();
+        }
       }
     });
 
     var state = {
       idx: kom.index(),
-      data: data,
       template: 'test-nested',
     };
 
@@ -86,12 +87,11 @@ var view_model = {
   }
 };
 
-
 $(window).on('popstate', function () {
   if (!history.state) {
     return;
   }
-  console.log("STATE", history.state);
+  KnockoutModal.at(history.state.index);
 });
 
 ko.applyBindings(view_model);
