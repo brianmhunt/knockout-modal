@@ -1,0 +1,71 @@
+/*!
+  Knockout Modal
+  License: MIT
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700);
+body {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 18px;
+}
+
+html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
+  font-family: 'Libre Baskerville', serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+.kom-contents {
+  max-width:800px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.large {
+  font-size: 1.5em;
+}
+
+.narrow {
+  max-width: 500px;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes loading {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+#loading-animation {
+  display: none;
+  background-color: rgba(0,0,0,0.2);
+  font-size: 8em;
+  color: blue;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding-top: 30%;
+  text-align: center;
+}
+
+#loading-animation span {
+  position: absolute;
+  -webkit-animation: loading 1.2s linear 0s;
+  animation: loading 1.2s linear 0s;
+}

@@ -1,0 +1,34 @@
+{
+  "name": "knockout-modal",
+  "version": "0.7.0",
+  "homepage": "https://github.com/brianmhunt/knockout-modal",
+  "authors": [
+    "Brian M Hunt <brianmhunt@gmail.com>"
+  ],
+  "description": "Unobtrusive modals for knockout",
+  "main": "index.js",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals"
+  ],
+  "keywords": [
+    "knockout",
+    "modal"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "knockout": "~3.2.0",
+    "jquery": "~2.1.1",
+    "pure": "~0.5.0"
+  },
+  "dependencies": {
+  }
+}

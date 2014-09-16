@@ -1,0 +1,128 @@
+/*!
+* Knockout-Modal
+* MIT licensed
+*/
+.kom-active body {
+  overflow: hidden;
+}
+
+.kom-active .kom-contents {
+  filter: blur(3px);
+  transform: scale( 0.9 );
+}
+
+.kom-modal {
+  position: fixed;
+  display: inline-flex;
+  flex-direction: column;
+  // justify-content: space-around;
+  align-items: center;
+  // align-content: space-around;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: translate3d(0,0,0);
+
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+
+  .kom-active & {
+    z-index: 900;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.kom-dialog {
+  transition: 0.3s transform;
+  transform-origin: 0 0;
+  display: block;  // for modals > page size
+}
+
+.kom-hide {
+  flex: 0;
+  transform: rotateX(80deg);
+}
+
+.kom-show {
+  flex: 1 1 auto;
+}
+
+.kom-box {
+  display: flex; // for centering modals < page size
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
+
+  .kom-show & {
+    min-height: 100%;
+    min-height: 100vh;
+  }
+}
+
+.kom-modal-content {
+  padding: 12px 1em;
+  margin: 8px;
+  position: relative;
+  background-color: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  box-shadow: 3px 5px 5px rgba(0,0,0,0.4);
+  background-clip: padding-box;
+  overflow: hidden;
+  outline: 0;
+  transform-origin: 50% 25%;
+  animation-name: kom_animation;
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+@keyframes kom_animation {
+  from { transform: scale3d(0,0,0); }
+  to { transform: scale3d(1,1,1); }
+}
+
+.kom-close {
+  position: absolute;
+  width: 65px;
+  border: 1px solid rbga(0,0,0,0.5);
+  right: -22px;
+  top: -7px;
+  cursor: n-resize;
+  background-color: rgba(0,0,240,0.5);
+  z-index: 1100;
+  transform: rotate(45deg);
+  text-align: center;
+  color: white;
+  padding-top: 12px;
+  &:after {
+    content: '\21a9';
+    transform: rotate(45deg);
+    display: inline-block;
+  }
+
+  &:hover {
+    color: yellow;
+    background-color: rgba(0,0,150, 0.8);
+  }
+}
+
+.kom-contents {
+  transition: 0.3s all;
+}
+
+
+
+/* .kom-modal */.kom-active {
+  transition: 0.3s all;
+}
+
+/* .kom-modal */.kom-inactive {
+  transition: 0.3s all;
+  z-index: -1;
+}

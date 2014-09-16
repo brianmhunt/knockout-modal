@@ -1,0 +1,164 @@
+/*!
+* Knockout-Modal
+* MIT licensed
+*/
+.kom-active body {
+  overflow: hidden;
+}
+.kom-active .kom-contents {
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+  -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+          transform: scale(0.9);
+}
+.kom-modal {
+  position: fixed;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+}
+.kom-active .kom-modal {
+  z-index: 900;
+  opacity: 1;
+  visibility: visible;
+}
+.kom-dialog {
+  -webkit-transition: 0.3s -webkit-transform;
+          transition: 0.3s transform;
+  -webkit-transform-origin: 0 0;
+      -ms-transform-origin: 0 0;
+          transform-origin: 0 0;
+  display: block;
+}
+.kom-hide {
+  -webkit-flex: 0;
+      -ms-flex: 0;
+          flex: 0;
+  -webkit-transform: rotateX(80deg);
+          transform: rotateX(80deg);
+}
+.kom-show {
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+.kom-box {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-align-content: space-around;
+      -ms-flex-line-pack: distribute;
+          align-content: space-around;
+}
+.kom-show .kom-box {
+  min-height: 100%;
+  min-height: 100vh;
+}
+.kom-modal-content {
+  padding: 12px 1em;
+  margin: 8px;
+  position: relative;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.4);
+  background-clip: padding-box;
+  overflow: hidden;
+  outline: 0;
+  -webkit-transform-origin: 50% 25%;
+      -ms-transform-origin: 50% 25%;
+          transform-origin: 50% 25%;
+  -webkit-animation-name: kom_animation;
+          animation-name: kom_animation;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+@-webkit-keyframes kom_animation {
+  from {
+    -webkit-transform: scale3d(0, 0, 0);
+            transform: scale3d(0, 0, 0);
+  }
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes kom_animation {
+  from {
+    -webkit-transform: scale3d(0, 0, 0);
+            transform: scale3d(0, 0, 0);
+  }
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+.kom-close {
+  position: absolute;
+  width: 65px;
+  border: 1px solid rbga(0, 0, 0, 0.5);
+  right: -22px;
+  top: -7px;
+  cursor: n-resize;
+  background-color: rgba(0, 0, 240, 0.5);
+  z-index: 1100;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  text-align: center;
+  color: white;
+  padding-top: 12px;
+}
+.kom-close:after {
+  content: '\21a9';
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  display: inline-block;
+}
+.kom-close:hover {
+  color: yellow;
+  background-color: rgba(0, 0, 150, 0.8);
+}
+.kom-contents {
+  -webkit-transition: 0.3s all;
+          transition: 0.3s all;
+}
+/* .kom-modal */
+.kom-active {
+  -webkit-transition: 0.3s all;
+          transition: 0.3s all;
+}
+/* .kom-modal */
+.kom-inactive {
+  -webkit-transition: 0.3s all;
+          transition: 0.3s all;
+  z-index: -1;
+}
