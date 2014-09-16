@@ -1,9 +1,8 @@
-//
+/*!
 // Knockout Modal
 // By: Brian M Hunt
 // License: MIT
-//
-//
+//*/
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['knockout', 'jquery'], factory);
@@ -16,89 +15,88 @@
   var $html = $("html");
   var TRANSITION_END = "webkitTransitionEnd oTransitionEnd otransitionend " +
     "transitionend msTransitionEnd";
-  var stack, at;
-
-  $(document.body).on('click', '.kom-modal', function (evt) {
-    console.log("dbC");
-    var class_list = evt.target.classList;
-    if (class_list.contains("kom-modal") || class_list.contains("kom-dialog")) {
-      modals = stack();
-      if (modals.length > 0) {
-        modals[modals.length - 1].remove()
-      }
-    }
-  });
+  var stack;
+  var at;
 
   var KnockoutModal = (function() {
-    var KM = function KnockoutModal(template, data, options) {
-      var $node = $(KnockoutModal.template)
-        .appendTo(KnockoutModal.$container);
-
-      this.template = template;
-      this.data = data;
+    var KM = function KnockoutModal(template, data_or_promise, options) {
+      var self = this;
+      this.template = null;
       this.options = options || {};
-      this.$node = $node;
-      this.$content = $node.find('.kom-modal-content');
-      this.$node.on('click', '.kom-close', on_close_click.bind(this));
-      if (this.options.classes) {
-        this.$content.addClass(this.options.classes);
-      }
+      this.pop = this.options.pop || function () {
+        at(at() - 1);
+      };
+      var on_hide = this.options.on_hide || null;
+      var on_show = this.options.on_show || null;
 
       this.is_active = ko.computed(function () {
-        return stack().indexOf(this) == at();
+        return this.index() == at();
       }, this);
 
-      this.active_class = ko.pureComputed(function () {
-        var index = stack().indexOf(this);
-        var at_ = at();
-        return index == at_ ? 'kom-active'
-          : index < at_ ? 'kom-inactive kom-pushed'
-          : 'kom-inactive kom-popped';
+      if (on_hide || on_show) {
+        this.is_active.subscribe(function (is_active) {
+          is_active ? (on_show ? on_show(this) : null)
+                    : (on_hide ? on_hide(this) : null);
+        }, this);
+      }
+
+      this.css = ko.pureComputed(function () {
+        var classes = this.options.classes || '';
+        return classes + ' ' + (this.index() == at() ? 'kom-show' : 'kom-hide');
       }, this);
 
-      stack.splice(at() + 1).forEach(function (kom) {
-        kom.remove();
-      });
-      at(stack.push(this) - 1);
-      ko.applyBindings(this, $node[0]);
+      stack.splice(at() + 1);
+      at(at() + 1);
+
+      if (data_or_promise instanceof Promise) {
+        data_or_promise
+          .then(this.render.bind(this, template))
+          .catch(console.error.bind(console))
+      } else {
+        this.render(template, data_or_promise)
+      }
     }
 
-    KM.prototype.remove = function () {
-      var node = this.$node;
-      var callback = this.options.after_close;
-      stack.remove(this);
-      at(at() - 1);
-      function on_hide() {
-        node.remove();
-        if (typeof callback == 'function') {
-          callback();
-        }
-      }
-      node.addClass('kom-remove-animation').one(TRANSITION_END, on_hide);
-    };
+    KM.at = at = ko.observable(-1);
+    KM.stack = stack = ko.observableArray();
+
+    KM.prototype.render = function (template, data) {
+      this.data = data;
+      this.template = template;
+      stack.push(this);
+    }
 
     KM.prototype.index = function () {
       return stack.indexOf(this);
     }
 
-    function on_close_click(evt) {
-      var callback = this.options.on_close_click;
-      at(at() - 1);
-      if (typeof callback == 'function') {
-        callback(evt);
-      }
-      return false;
+    KM.prototype.on_close_click = function() {
+      this.pop();
     }
 
-    at = KM.at = ko.observable();
-    stack = KM.stack = ko.observableArray();
-
-    at.subscribe(function(at_) {
-      if (at_ >= 0) {
-        $html.addClass('kom-active');
-      } else {
-        $html.removeClass('kom-active');
+    KM.animate_blur = function (node, idx, kom) {
+      var $node = $(node);
+      var callback = kom.options.on_blur;
+      $node.remove();
+      if (typeof callback == 'function') {
+        callback(kom);
       }
+    };
+
+    KM.on_close_click = function (vm, evt) {
+      var kom;
+      if (evt.target.classList.contains('kom-modal') ||
+          evt.target.classList.contains('kom-box')) {
+        kom = KnockoutModal.stack()[at()];
+        if (kom) {
+          kom.pop();
+        }
+      }
+    }
+
+    // Add kom-active to <html>
+    at.subscribe(function(at_) {
+      $html.toggleClass('kom-active', at_ >= 0);
     });
 
     return KM;

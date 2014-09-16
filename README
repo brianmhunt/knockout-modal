@@ -10,6 +10,8 @@ Features:
 - Flexbox for centering.
 - CSS3 animations
 - Long-modal scrolling
-
+- Multiple modal stacking
+- HTML5 History state friendly
+- ~ 100 lines of Javascript
 
 LICENSE: MIT

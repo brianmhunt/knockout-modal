@@ -62,6 +62,41 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
+        <h2>Async modals</h2>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          What do we do when we wait for you?
+        </p>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          <button class="pure-button"
+            data-bind='click: open_async_click'>Async Modal</button>
+        </p>
+      </div>
+    </div>
+
+    <div class='pure-g'>
+      <div class='pure-u-1-1'>
+        <h2>Event modals</h2>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          Watch for clicks on `data-*`.
+        </p>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          <button class="pure-button" data-kom-toggle='test-event'>
+            Click-event modal
+          </button>
+        </p>
+      </div>
+    </div>
+
+    <div class='pure-g'>
+      <div class='pure-u-1-1'>
         <h2>History and modals</h2>
       </div>
       <div class='pure-u-1-2'>
@@ -97,25 +132,46 @@
       data-bind='click: open_click'>Go deeper</button>
   </template>
 
+  <template id='test-async'>
+    <h3>Async</h3>
+    The promised data.
+    <p data-bind='text: phrase'>
+    </p>
+  </template>
+
+  <template id='test-event'>
+    <h3>Event</h3>
+    A little <code>data-kom-toggle</code> for your coffee?
+  </template>
+
   <template id='test-history'>
     <h2>History</h2>
-    <h3 data-bind='text: count'></h3>
+    <h3>At: <!-- ko text: at --><!-- /ko --></h3>
+    <p>
+      Use the back/forward buttons to navigate.
+    </p>
     <hr/>
-    Use the back/forward buttons to navigate.
     <button class='pure-button'
       data-bind='click: open_click'>Add another modal</button>
   </template>
 
-  <template id='kom-template'>
-    <div class='kom-modal'  data-bind='css: active_class'>
-      <div class='kom-dialog'>
+  <div id='loading-animation'>
+    <span>&rarr;</span>
+  </div>
+
+  <div class='kom-modal' data-bind='foreach: { data: KnockoutModal.stack,
+      beforeRemove: KnockoutModal.animate_blur }, click: KnockoutModal.on_close_click,
+      css: { "kom-active": KnockoutModal.at() >= 0 } '>
+    <div class='kom-dialog' data-bind='css: css'>
+      <div class='kom-box'>
         <div class='kom-modal-content'>
-          <div class='kom-close' title='Go back'></div>
+          <div class='kom-close' data-bind='click: on_close_click'
+            title='Go back'></div>
           <!-- ko template:{name:template,data:data,if:template} --><!-- /ko -->
         </div>
       </div>
     </div>
-  </template>
+  </div>
 
   <script src='knockout/dist/knockout.debug.js'></script>
   <script src='jquery/dist/jquery.js'></script>
