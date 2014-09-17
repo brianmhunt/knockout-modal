@@ -18,7 +18,6 @@
     "transitionend msTransitionEnd";
   var KnockoutModal = (function() {
     var KM = function KnockoutModal(template, data, options) {
-      var self = this;
       this.template = null;
       this.options = options || {};
       this.pop = this.options.pop || function () { at(at() - 1); };
@@ -72,20 +71,14 @@
     }
   }
 
-  function animate_blur(node, idx, kom) {
-    node.parentNode.removeChild(node);
-    if (typeof kom.options.on_blur == 'function') { kom.options.on_blur(kom); }
-  };
-
   var bh = ko.bindingHandlers;
-  var foreach_data = { data: stack, beforeRemove: animate_blur };
   bh.KnockoutModal = {
     init: function (e, va, a, vm, c) {
-      bh.foreach.init(e, function () { return foreach_data }, a, vm, c);
+      bh.foreach.init(e, function () { return {data: stack} }, a, vm, c);
       bh.click.init(e, function () { return on_close_click }, a, vm, c);
     },
     update: function (e, va, a, vm, c) {
-      bh.foreach.update(e, function () { return foreach_data }, a, vm, c);
+      bh.foreach.update(e, function () { return {data: stack} }, a, vm, c);
     }
   };
 
