@@ -44,10 +44,8 @@
         .then(this.render.bind(this, template))
         .catch(console.error.bind(console))
     }
-
     KM.at = at = ko.observable(-1);
     KM.stack = stack = ko.observableArray();
-
     KM.prototype.index = function () { return stack.indexOf(this); }
     KM.prototype.on_close_click = function() { this.pop(); }
     KM.prototype.render = function (template, data) {
@@ -55,10 +53,7 @@
       this.template = template;
       stack.push(this);
     }
-
-    // Add kom-active to <html>
     at.subscribe(function(at_) { $html.toggleClass('kom-active', at_ >= 0) });
-
     return KM;
   })();
 
@@ -81,9 +76,5 @@
       bh.foreach.update(e, function () { return {data: stack} }, a, vm, c);
     }
   };
-
-  // Globals
-  KnockoutModal.$container = $(document.body);
-  KnockoutModal.template = $("#kom-template").html();
   return KnockoutModal;
 }));
