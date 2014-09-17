@@ -159,9 +159,8 @@
     <span>&rarr;</span>
   </div>
 
-  <div class='kom-modal' data-bind='foreach: { data: KnockoutModal.stack,
-      beforeRemove: KnockoutModal.animate_blur }, click: KnockoutModal.on_close_click,
-      css: { "kom-active": KnockoutModal.at() >= 0 } '>
+  <!-- All the modals go here: -->
+  <div class='kom-modal' data-bind='KnockoutModal'>
     <div class='kom-dialog' data-bind='css: css'>
       <div class='kom-box'>
         <div class='kom-modal-content'>

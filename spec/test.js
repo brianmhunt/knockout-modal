@@ -81,7 +81,6 @@ var view_model = {
     };
 
     var kom = new KnockoutModal('test-history', data, {
-      show: true,
       on_show: function (kom) {
         if (kom._is_on_history_stack) {
           return;
