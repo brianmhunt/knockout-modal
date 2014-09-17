@@ -36,7 +36,7 @@ function inc(importance) {
     .pipe(plugins.bump({type: importance}))
     .pipe(gulp.dest('./'))
     .pipe(plugins.git.commit('bumps package version'))
-    .pipe(plugins.filter('package.json'))
+    .pipe(plugins.filter('bower.json'))
     .pipe(plugins.tagVersion())
 }
 
