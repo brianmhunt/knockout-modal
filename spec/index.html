@@ -3,6 +3,7 @@
   <link rel='stylesheet' href='pure/pure.css'/>
   <link rel='stylesheet' href='knockout-modal.css'/>
   <link rel='stylesheet' href='test.css'/>
+  <title>Knockout Modal</title>
 </head>
 <body>
   <div class='kom-contents'>
@@ -11,7 +12,7 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>Basic modal</h2>
+        <h3>Basic modal</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -28,7 +29,7 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>Long modal</h2>
+        <h3>Long modal</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -45,7 +46,7 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>Nested modals</h2>
+        <h3>Nested modals</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -62,7 +63,7 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>Async modals</h2>
+        <h3>Async modals</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -79,7 +80,7 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>Event modals</h2>
+        <h3>Event modals</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -97,7 +98,7 @@
 
     <div class='pure-g'>
       <div class='pure-u-1-1'>
-        <h2>History and modals</h2>
+        <h3>History and modals</h3>
       </div>
       <div class='pure-u-1-2'>
         <p>
@@ -126,7 +127,7 @@
   </template>
 
   <template id='test-nested'>
-    <h2>Modal #<em data-bind='text: count'></em></h2>
+    <h3>Modal #<em data-bind='text: count'></em></h3>
     <hr/>
     <button class='pure-button'
       data-bind='click: open_click'>Go deeper</button>
@@ -145,7 +146,7 @@
   </template>
 
   <template id='test-history'>
-    <h2>History</h2>
+    <h3>History</h3>
     <h3>At: <!-- ko text: at --><!-- /ko --></h3>
     <p>
       Use the back/forward buttons to navigate.
@@ -159,9 +160,8 @@
     <span>&rarr;</span>
   </div>
 
-  <div class='kom-modal' data-bind='foreach: { data: KnockoutModal.stack,
-      beforeRemove: KnockoutModal.animate_blur }, click: KnockoutModal.on_close_click,
-      css: { "kom-active": KnockoutModal.at() >= 0 } '>
+  <!-- All the modals go here: -->
+  <div class='kom-modal' data-bind='KnockoutModal'>
     <div class='kom-dialog' data-bind='css: css'>
       <div class='kom-box'>
         <div class='kom-modal-content'>

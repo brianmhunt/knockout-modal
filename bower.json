@@ -1,6 +1,6 @@
 {
   "name": "knockout-modal",
-  "version": "0.7.0",
+  "version": "0.7.6",
   "homepage": "https://github.com/brianmhunt/knockout-modal",
   "authors": [
     "Brian M Hunt <brianmhunt@gmail.com>"
@@ -29,6 +29,5 @@
     "jquery": "~2.1.1",
     "pure": "~0.5.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

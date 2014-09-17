@@ -29,6 +29,22 @@ var config = {
   }
 };
 
+// from https://github.com/ikari-pl/gulp-tag-version
+function inc(importance) {
+  console.log(" ----  >>>  Don't forget: $ git push --tag");
+  return gulp.src(['./package.json', './bower.json'])
+    .pipe(plugins.bump({type: importance}))
+    .pipe(gulp.dest('./'))
+    .pipe(plugins.git.commit('bumps package version'))
+    .pipe(plugins.filter('bower.json'))
+    .pipe(plugins.tagVersion())
+}
+
+gulp.task('patch', function() { return inc('patch'); })
+gulp.task('feature', function() { return inc('minor'); })
+gulp.task('release', function() { return inc('major'); })
+
+
 gulp.task('less', function () {
   return gulp.src(config.css.src)
      .pipe(plugins.less(config.css.less_opts).on('error', console.log))
