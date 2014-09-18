@@ -122,30 +122,30 @@
 }
 .kom-close {
   position: absolute;
-  width: 65px;
-  border: 1px solid rbga(0, 0, 0, 0.5);
-  right: -22px;
-  top: -7px;
+  border: 1px solid #CCC;
+  right: 0px;
+  top: 0px;
   cursor: n-resize;
-  background-color: rgba(0, 0, 240, 0.5);
   z-index: 1100;
-  -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
   text-align: center;
-  color: white;
-  padding-top: 12px;
+  color: #000000;
+  background-color: #fffca7;
+  padding: 4px 10px 10px 14px;
+  border-bottom-left-radius: 200px;
+  -webkit-transition: 0.3s all;
+          transition: 0.3s all;
 }
 .kom-close:after {
   content: '\21a9';
-  -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
   display: inline-block;
 }
 .kom-close:hover {
-  color: yellow;
-  background-color: rgba(0, 0, 150, 0.8);
+  padding: 7px 14px 14px 18px;
+  color: #f8f9bc;
+  background-color: #7e793d;
 }
 .kom-contents {
   -webkit-transition: 0.3s all;

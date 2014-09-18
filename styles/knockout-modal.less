@@ -2,6 +2,13 @@
 * Knockout-Modal
 * MIT licensed
 */
+
+@kom-tab-close-bg: #fffca7;
+@kom-tab-close-color: black;
+@kom-tab-close-hover-bg: #7e793d;
+@kom-tab-close-hover-color: #f8f9bc;
+
+
 .kom-active body {
   overflow: hidden;
 }
@@ -89,26 +96,29 @@
 
 .kom-close {
   position: absolute;
-  width: 65px;
-  border: 1px solid rbga(0,0,0,0.5);
-  right: -22px;
-  top: -7px;
+  border: 1px solid #CCC;
+  right: 0px;
+  top: 0px;
   cursor: n-resize;
-  background-color: rgba(0,0,240,0.5);
+
   z-index: 1100;
-  transform: rotate(45deg);
   text-align: center;
-  color: white;
-  padding-top: 12px;
+  color: @kom-tab-close-color;
+  background-color: @kom-tab-close-bg;
+  padding: 4px 10px 10px 14px;
+  border-bottom-left-radius: 200px;
+  transition: 0.3s all;
+
   &:after {
     content: '\21a9';
-    transform: rotate(45deg);
+    transform: rotate(90deg);
     display: inline-block;
   }
 
   &:hover {
-    color: yellow;
-    background-color: rgba(0,0,150, 0.8);
+    padding: 7px 14px 14px 18px;
+    color: @kom-tab-close-hover-color;
+    background-color: @kom-tab-close-hover-bg;
   }
 }
 
