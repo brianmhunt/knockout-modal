@@ -16,24 +16,24 @@
   var KnockoutModal = (function() {
     var KM = function KnockoutModal(template, data, options) {
       this.options = options || {};
+      var classes = this.options.classes || '';
+      this.on_hide_cb = this.options.on_hide || function () {};
+      this.on_show_cb = this.options.on_show || function () {};
       this.pop = this.options.pop || function () { at(at() - 1); };
-      var on_hide = this.options.on_hide || null;
-      var on_show = this.options.on_show || null;
-      this.is_active = ko.computed(function () { return this.index() == at() }, this);
-
-      if (on_hide || on_show) {
-        this.is_active.subscribe(function (is_active) {
-          is_active ? (on_show ? on_show(this) : null) : (on_hide ? on_hide(this) : null);
-        }, this);
-      }
+      this.is_active = ko.computed({
+        read: function () { return this.index() == at() },
+        owner: this,
+        deferEvaluation: true,
+        pure: true,
+      });
 
       this.css = ko.pureComputed(function () {
-        var classes = this.options.classes || '';
         return classes + ' ' + (this.index() == at() ? 'kom-show' : 'kom-hide');
       }, this);
 
       stack.splice(at() + 1);
       at(at() + 1);
+      this.on_show();
 
       this.render_future = Promise.resolve(data)
         .then(this.render.bind(this, template))
@@ -47,10 +47,24 @@
       this.data = data;
       this.template = template;
       stack.push(this);
-    }
+    };
+    KM.prototype.on_show = function () {
+      var subscr;
+      this.on_show_cb(this);
+      subscr = at.subscribe(function (now_at) {
+        if (now_at != this.index()) {
+          this.on_hide_cb(this);
+          subscr.dispose();
+        }
+      }, this)
+    };
     KM.current = function () { return stack()[at()]; }
     at.subscribe(function(at_) {
+      var current = KM.current();
       this.toggle('kom-active', at_ >= 0);
+      if (current) {
+        current.on_show(current);
+      }
     }, document.documentElement.classList);
     return KM;
   })();

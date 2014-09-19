@@ -44,7 +44,15 @@ var view_model = {
     var data = {
       Alpha: ko.observable('One'),
     };
-    new KnockoutModal('test-basic', data);
+    var events = {
+      on_show: function (kom) {
+        console.log("Showing", kom);
+      },
+      on_hide: function (kom) {
+        console.log("Hiding", kom);
+      }
+    };
+    new KnockoutModal('test-basic', data, events);
   },
 
   open_scroll_click: function () {
@@ -57,7 +65,16 @@ var view_model = {
       count: nest_count++,
       open_click: view_model.open_nested_click,
     };
-    new KnockoutModal('test-nested', data);
+    var opts = {
+      on_show: function (kom) {
+        console.log("Showing", kom);
+      },
+      on_hide: function (kom) {
+        console.log("Hiding", kom);
+      }
+    }
+
+    new KnockoutModal('test-nested', data, opts);
   },
 
   open_async_click: function () {
