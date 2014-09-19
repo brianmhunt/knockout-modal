@@ -5,17 +5,14 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['knockout', 'jquery'], factory);
+    define(['knockout'], factory);
   } else if (typeof exports === 'object') {
-    module.exports = factory(require('knockout'), require('jquery'));
+    module.exports = factory(require('knockout'));
   } else {
-    root.KnockoutModal = factory(root.ko, root.jQuery);
+    root.KnockoutModal = factory(root.ko);
   }
-}(this, function (ko, $) {
+}(this, function (ko) {
   var stack, at;
-  var $html = $("html");
-  var TRANSITION_END = "webkitTransitionEnd oTransitionEnd otransitionend " +
-    "transitionend msTransitionEnd";
   var KnockoutModal = (function() {
     var KM = function KnockoutModal(template, data, options) {
       this.options = options || {};
@@ -52,17 +49,20 @@
       stack.push(this);
     }
     KM.current = function () { return stack()[at()]; }
-    at.subscribe(function(at_) { $html.toggleClass('kom-active', at_ >= 0) });
+    at.subscribe(function(at_) {
+      this.toggle('kom-active', at_ >= 0);
+    }, document.documentElement.classList);
     return KM;
   })();
 
   function on_modal_click(evt) {
     var kom;
-    if (evt.target.hasAttribute('data-kom-close')) {
-      evt.stopPropagation();
-      if (kom = KnockoutModal.current()) {
-        kom.pop();
-      }
+    if (!evt.target.hasAttribute('data-kom-close')) {
+      return
+    }
+    evt.stopPropagation();
+    if (kom = KnockoutModal.current()) {
+      kom.pop();
     }
   }
 
