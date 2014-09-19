@@ -1,6 +1,6 @@
 {
   "name": "knockout-modal",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "description": "Unobtrusive modals with knockout",
   "main": "index.js",
   "scripts": {
