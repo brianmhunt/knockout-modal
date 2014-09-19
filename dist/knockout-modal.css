@@ -50,11 +50,7 @@
   display: block;
 }
 .kom-hide {
-  -webkit-flex: 0;
-      -ms-flex: 0;
-          flex: 0;
-  -webkit-transform: rotateX(80deg);
-          transform: rotateX(80deg);
+  display: none;
 }
 .kom-show {
   -webkit-flex: 1 1 auto;

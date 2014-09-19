@@ -125,6 +125,11 @@
     <!-- ko foreach: ipsum -->
     <p class='large' data-bind='text: $data'></p>
     <!-- /ko -->
+
+    <p>
+      <button class="pure-button"
+        data-bind='click: $root.open_scroll_click'>Nest a scrolling modal</button>
+    </p>
   </template>
 
   <template id='test-nested'>
