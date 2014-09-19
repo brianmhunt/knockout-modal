@@ -162,12 +162,11 @@
   </div>
 
   <!-- All the modals go here: -->
-  <div class='kom-modal' data-bind='KnockoutModal'>
+  <div class='kom-modal' data-bind='KnockoutModal' data-kom-close>
     <div class='kom-dialog' data-bind='css: css'>
-      <div class='kom-box'>
+      <div class='kom-box' data-kom-close>
         <div class='kom-modal-content'>
-          <div class='kom-close' data-bind='click: on_close_click'
-            title='Go back'></div>
+          <div class='kom-close' data-kom-close title='Go back'></div>
           <!-- ko template:{name:template,data:data,if:template} --><!-- /ko -->
         </div>
       </div>

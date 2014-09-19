@@ -18,7 +18,6 @@
     "transitionend msTransitionEnd";
   var KnockoutModal = (function() {
     var KM = function KnockoutModal(template, data, options) {
-      this.template = null;
       this.options = options || {};
       this.pop = this.options.pop || function () { at(at() - 1); };
       var on_hide = this.options.on_hide || null;
@@ -57,23 +56,24 @@
     return KM;
   })();
 
-  function on_close_click(vm, evt) {
+  function on_modal_click(evt) {
     var kom;
-    if (evt.target.classList.contains('kom-modal') ||
-        evt.target.classList.contains('kom-box')) {
-      kom = KnockoutModal.current();
-      if (kom) { kom.pop(); }
+    if (evt.target.hasAttribute('data-kom-close')) {
+      evt.stopPropagation();
+      if (kom = KnockoutModal.current()) {
+        kom.pop();
+      }
     }
   }
 
   var bh = ko.bindingHandlers;
   bh.KnockoutModal = {
     init: function (e, va, a, vm, c) {
-      bh.foreach.init(e, function () { return {data: stack} }, a, vm, c);
-      bh.click.init(e, function () { return on_close_click }, a, vm, c);
+      e.addEventListener('click', on_modal_click);
+      return bh.foreach.init(e, function () { return {data: stack} }, a, vm, c);
     },
     update: function (e, va, a, vm, c) {
-      bh.foreach.update(e, function () { return {data: stack} }, a, vm, c);
+      return bh.foreach.update(e, function () { return {data: stack} }, a, vm, c);
     }
   };
   return KnockoutModal;
