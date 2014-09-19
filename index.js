@@ -33,7 +33,6 @@
 
       stack.splice(at() + 1);
       at(at() + 1);
-      this.on_show();
 
       this.render_future = Promise.resolve(data)
         .then(this.render.bind(this, template))
@@ -47,16 +46,16 @@
       this.data = data;
       this.template = template;
       stack.push(this);
+      this.on_show();
     };
     KM.prototype.on_show = function () {
-      var subscr;
-      this.on_show_cb(this);
-      subscr = at.subscribe(function (now_at) {
+      var subs = at.subscribe(function (now_at) {
         if (now_at != this.index()) {
           this.on_hide_cb(this);
-          subscr.dispose();
+          subs.dispose();
         }
       }, this)
+      this.on_show_cb(this);
     };
     KM.current = function () { return stack()[at()]; }
     at.subscribe(function(at_) {

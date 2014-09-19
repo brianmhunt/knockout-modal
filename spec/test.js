@@ -100,6 +100,7 @@ var view_model = {
     var kom = new KnockoutModal('test-history', data, {
       on_show: function (kom) {
         if (kom._is_on_history_stack) {
+          // Avoid repeated-application when the history is popped.
           return;
         }
         history.pushState({ index: kom.index() }, '', '#' + kom.index());
