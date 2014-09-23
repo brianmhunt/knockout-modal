@@ -81,13 +81,20 @@ var view_model = {
     var data = new Promise(function(resolve) {
       setTimeout(function () {
         resolve({ phrase: "This eventually arrives." })
-      }, 1200)
+      }, 120)
     });
     $("#loading-animation").show();
     data.then(function () {
       $("#loading-animation").hide();
     });
-    new KnockoutModal('test-async', data);
+    new KnockoutModal('test-async', data, {
+      on_show: function (kom) {
+        console.info("[show]", kom);
+      },
+      on_hide: function (kom) {
+        console.info("[hide]", kom);
+      },
+    });
 
   },
 
@@ -110,6 +117,41 @@ var view_model = {
         // popstate handler takes care of putting us at the right index.
         history.back();
       },
+    });
+  },
+
+  open_async_history_click: function () {
+    var data_obj = {
+      at: KnockoutModal.at,
+      open_click: view_model.open_async_history_click,
+    };
+    var data = new Promise(function(resolve) {
+      setTimeout(function () { resolve(data_obj) }, 600)
+    })
+
+    var kom = new KnockoutModal('test-history', data, {
+      on_show: function (kom) {
+        console.info("[show]", history.state);
+        if (kom._is_on_history_stack) {
+          // Avoid repeated-application when the history is popped.
+          return;
+        }
+        if (kom.index() === KnockoutModal.at()) {
+          history.pushState({ index: kom.index() }, '', '#' + kom.index());
+        }
+        kom._is_on_history_stack = true;
+      },
+      pop: function (kom) {
+        console.info("[pop]", history.state);
+        // popstate handler takes care of putting us at the right index.
+        if (history.state) {
+          history.back();
+        }
+        console.info("[popped]", history.state);
+      },
+      on_hide: function (kom) {
+        console.info("[hide]", history.state);
+      }
     });
   },
 };

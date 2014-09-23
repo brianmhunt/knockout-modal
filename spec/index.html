@@ -102,14 +102,30 @@
       </div>
       <div class='pure-u-1-2'>
         <p>
-          You probably don't know how important it is to capture the `back`
-          events.
+          Normal folks use the back button a lot.
         </p>
       </div>
       <div class='pure-u-1-2'>
         <p>
           <button class="pure-button"
             data-bind='click: open_history_click'>History Modal</button>
+        </p>
+      </div>
+    </div>
+
+    <div class='pure-g'>
+      <div class='pure-u-1-1'>
+        <h3>Async modals and History</h3>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          History is told by the victor.
+        </p>
+      </div>
+      <div class='pure-u-1-2'>
+        <p>
+          <button class="pure-button"
+            data-bind='click: open_async_history_click'>Async History Modal</button>
         </p>
       </div>
     </div>
@@ -144,6 +160,11 @@
     The promised data.
     <p data-bind='text: phrase'>
     </p>
+
+    <button class='pure-button'
+      data-bind='click: $parents[1].open_async_click'>
+      Nested Async
+    </button>
   </template>
 
   <template id='test-event'>
@@ -162,6 +183,17 @@
       data-bind='click: open_click'>Add another modal</button>
   </template>
 
+  <template id='test-async-history'>
+    <h3>History</h3>
+    <h3>At: <!-- ko text: at --><!-- /ko --></h3>
+    <p>
+      Use the back/forward buttons to navigate.
+    </p>
+    <hr/>
+    <button class='pure-button'
+      data-bind='click: open_click'>Descend into bunny pit</button>
+  </template>
+
   <div id='loading-animation'>
     <span>&rarr;</span>
   </div>
@@ -172,7 +204,10 @@
       <div class='kom-box' data-kom-close>
         <div class='kom-modal-content'>
           <div class='kom-close' data-kom-close title='Go back'></div>
-          <!-- ko template:{name:template,data:data,if:template} --><!-- /ko -->
+          <!-- ko template:{name:template,data:data,if:loaded} --><!-- /ko -->
+          <!-- ko ifnot: loaded -->
+          Loading ...
+          <!-- /ko -->
         </div>
       </div>
     </div>
