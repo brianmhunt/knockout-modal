@@ -70,7 +70,7 @@
         var kom;
         if (!evt.target.hasAttribute('data-kom-close')) { return }
         evt.stopPropagation();
-        if (kom = KnockoutModal.current()) { kom.pop(); }
+        if (kom = KM.current()) { kom.pop(); }
       });
       return bh.foreach.init(e, function () { return {data: stack} }, a, vm, c);
     },
