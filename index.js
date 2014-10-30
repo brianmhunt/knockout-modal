@@ -22,7 +22,7 @@
     this.on_show_cb = this.options.on_show || function () {};
     this.pop = this.options.pop || function () { at(at() - 1); };
     this.is_active = ko.computed({
-      read: function () { return this.index() == at() },
+      read: function () { return this.index() == at(); },
       owner: this,
       deferEvaluation: true,
       pure: true,
@@ -36,16 +36,17 @@
     at(at() + 1);
     stack.push(this);
     this.render_future = Promise.resolve(data)
-      .then(this.render.bind(this))
-  }
+      .then(this.render.bind(this));
+  };
   KM.at = at = ko.observable(-1);
   KM.stack = stack = ko.observableArray();
-  KM.prototype.index = function () { return stack.indexOf(this); }
-  KM.prototype.on_close_click = function() { this.pop.call(this); }
+  KM.prototype.index = function () { return stack.indexOf(this); };
+  KM.prototype.on_close_click = function() { this.pop.call(this); };
   KM.prototype.render = function (data) {
     this.data(data);
-    this.loaded(true)
+    this.loaded(true);
     this.on_show();
+    return data;
   };
   KM.prototype.on_show = function () {
     var subs = at.subscribe(function (now_at) {
@@ -53,10 +54,10 @@
         this.on_hide_cb(this);
         subs.dispose();
       }
-    }, this)
+    }, this);
     this.on_show_cb(this);
   };
-  KM.current = function () { return stack()[at()]; }
+  KM.current = function () { return stack()[at()]; };
   at.subscribe(function(at_) {
     var current = KM.current();
     document.documentElement.classList.toggle('kom-active', at_ >= 0);
@@ -67,15 +68,15 @@
   bh.KnockoutModal = {
     init: function (e, va, a, vm, c) {
       e.addEventListener('click', function (evt) {
-        var kom;
-        if (!evt.target.hasAttribute('data-kom-close')) { return }
+        if (!evt.target.hasAttribute('data-kom-close')) { return; }
         evt.stopPropagation();
-        if (kom = KM.current()) { kom.pop(); }
+        var kom = KM.current();
+        if (kom) { kom.pop(); }
       });
-      return bh.foreach.init(e, function () { return {data: stack} }, a, vm, c);
+      return bh.foreach.init(e, function () { return {data: stack}; }, a, vm, c);
     },
     update: function (e, va, a, vm, c) {
-      return bh.foreach.update(e, function () { return {data: stack} }, a, vm, c);
+      return bh.foreach.update(e, function () { return {data: stack}; }, a, vm, c);
     }
   };
   return KM;
