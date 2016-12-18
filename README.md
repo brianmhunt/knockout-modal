@@ -1,6 +1,8 @@
 Knockout Modal
 ---
 
+> NOTE: This is no longer maintained, but kept around for illustration.
+
 An opinionated modal, using Knockout.
 
 See the [**demonstration**](https://brianmhunt.github.io/knockout-modal).
